@@ -698,6 +698,149 @@ footer {
 .modal-success p { margin-top: 10px; color: var(--ink-soft); font-size: 15px; }
 .modal-success .mail { font-family: var(--font-mono); font-size: 14px; color: var(--cobalt); }
 
+/* ── Personalização (temas / dark / mobile) ────────────────── */
+.custom { background: var(--paper-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+.custom-gallery {
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 22px;
+    align-items: start;
+}
+.custom-card { grid-column: span 6; }
+.custom-card.tall { grid-column: span 12; }
+.custom-card .shot { background: #fff; }
+.custom-card h4 {
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 560;
+}
+.custom-card p { margin-top: 4px; font-size: 14px; color: var(--ink-soft); max-width: 480px; }
+
+.custom-bottom {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 56px;
+    align-items: center;
+}
+/* moldura de celular */
+.phone {
+    width: 270px;
+    margin: 0 auto;
+    border: 2px solid var(--ink);
+    border-radius: 36px;
+    padding: 10px;
+    background: var(--ink);
+    box-shadow: var(--shadow-pop);
+    transform: rotate(-1.2deg);
+    transition: transform .35s cubic-bezier(.2, .7, .25, 1);
+}
+.phone:hover { transform: rotate(0deg) translateY(-4px); }
+.phone-screen {
+    border-radius: 26px;
+    overflow: hidden;
+    background: #fff;
+    max-height: 540px;
+}
+.phone-screen img { width: 100%; }
+.phone-notch {
+    width: 86px; height: 5px;
+    background: #3c3d44;
+    border-radius: 99px;
+    margin: 0 auto 8px;
+}
+
+/* swatches de tema (decorativo) */
+.swatches { display: flex; gap: 8px; margin-top: 18px; }
+.swatches i {
+    width: 22px; height: 22px;
+    border-radius: 7px;
+    border: 1.5px solid rgba(27, 28, 32, .18);
+}
+
+/* ── Hero: cards flutuantes sobre o screenshot ─────────────── */
+.hero-stage { position: relative; }
+.float-card {
+    position: absolute;
+    z-index: 3;
+    background: #fff;
+    border: 1px solid var(--ink);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: var(--shadow-pop);
+    font-size: 13.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: float-in 1s cubic-bezier(.2, .8, .3, 1) both;
+}
+.float-card .dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex: 0 0 auto;
+}
+.float-card strong { display: block; font-size: 13.5px; }
+.float-card span { color: var(--ink-faint); font-size: 12px; }
+.float-approve {
+    top: 42px; right: -14px;
+    transform: rotate(1.4deg);
+    animation-delay: .55s;
+}
+.float-approve .dot { background: #dcf5e6; }
+.float-mention {
+    bottom: 60px; left: -18px;
+    transform: rotate(-1.6deg);
+    animation-delay: .85s;
+}
+.float-mention .dot { background: var(--cobalt-wash); }
+@keyframes float-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; }
+}
+
+/* grain sutil no hero e cta */
+.hero::before, .cta-final::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero::before { z-index: 1; }
+
+/* refinamentos gerais */
+.sec-title { text-wrap: balance; }
+.hero h1 { text-wrap: balance; }
+.nav a { position: relative; }
+.nav a:not(.nav-login)::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 100%; height: 2px;
+    background: var(--cobalt);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .2s;
+}
+.nav a:not(.nav-login):hover::after { transform: scaleX(1); }
+a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--cobalt);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (max-width: 960px) {
+    .custom-card, .custom-card.tall { grid-column: span 12; }
+    .custom-bottom { grid-template-columns: 1fr; gap: 36px; }
+    .float-card { display: none; }
+}
+
 /* ── Reveal on scroll ──────────────────────────────────────── */
 .reveal {
     opacity: 0;
