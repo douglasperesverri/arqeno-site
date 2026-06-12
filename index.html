@@ -3,450 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arqeno — A plataforma de projetos para escritórios de arquitetura</title>
-    <meta name="description" content="Organize cada projeto do briefing à obra: pipeline de fases, aprovações do cliente e comunicação centralizada. Uma alternativa acessível a Wrike, Monday e Jira, feita para escritórios de arquitetura, engenharia e marcenaria.">
-    <link rel="icon" href="favicon.svg">
 
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet">
+    <title>arqeno — Gestão de projetos para escritórios de arquitetura | Trial grátis 14 dias</title>
+    <meta name="description" content="Projetos, etapas, aprovações de clientes e briefing com IA em um só lugar. Feito para escritórios de arquitetura brasileiros. Preço por escritório (não por usuário). Teste grátis por 14 dias, sem cartão.">
+    <link rel="canonical" href="https://arqeno.com.br/">
+    <meta name="robots" content="index, follow">
 
-    <style>
-        :root {
-            --bg:#fff; --bg-warm:#FBFAF8; --tint:#F6F4EF; --tint-blue:#EFF3FE;
-            --ink:#25231E; --ink-2:#5B574F; --ink-3:#908B81; --border:#EAE7E0; --border-2:#E2DED5;
-            --blue:#2563EB; --blue-soft:#3B82F6; --green:#15803d; --amber:#B45309;
-            --sans:'General Sans',-apple-system,system-ui,'Segoe UI',sans-serif;
-            --mono:'JetBrains Mono',ui-monospace,monospace;
-            --maxw:1120px; --r:14px;
-            --shadow-lg:0 40px 80px -28px rgba(37,35,30,.28),0 12px 28px -16px rgba(37,35,30,.18);
-            --shadow-sm:0 1px 2px rgba(37,35,30,.05),0 8px 24px -18px rgba(37,35,30,.25);
-        }
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-        body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
-        img,svg{display:block;max-width:100%}
-        a{color:inherit;text-decoration:none}
-        .container{max-width:var(--maxw);margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
-        .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.7}
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://arqeno.com.br/">
+    <meta property="og:site_name" content="arqeno">
+    <meta property="og:title" content="arqeno — Gestão de projetos para escritórios de arquitetura">
+    <meta property="og:description" content="Projetos, aprovações de clientes e briefing com IA em um só lugar. Preço por escritório. Trial grátis de 14 dias, sem cartão.">
+    <meta property="og:image" content="https://arqeno.com.br/assets/screenshots/02-visao-geral.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="arqeno — Gestão de projetos para escritórios de arquitetura">
+    <meta name="twitter:description" content="Projetos, aprovações de clientes e briefing com IA em um só lugar. Trial grátis de 14 dias.">
+    <meta name="twitter:image" content="https://arqeno.com.br/assets/screenshots/02-visao-geral.png">
 
-        .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:15px;font-weight:540;line-height:1;padding:12px 18px;border-radius:9px;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,background .18s,border-color .18s,box-shadow .18s}
-        .btn-dark{background:var(--ink);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.1) inset}
-        .btn-dark:hover{background:var(--blue);transform:translateY(-1px)}
-        .btn-soft{background:var(--bg);color:var(--ink);border-color:var(--border-2)}
-        .btn-soft:hover{border-color:var(--ink-3);transform:translateY(-1px)}
-        .btn .ar{transition:transform .2s}.btn:hover .ar{transform:translateX(3px)}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-        .nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .25s}
-        .nav.scrolled{border-bottom-color:var(--border)}
-        .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-        .brand{display:flex;align-items:center;gap:9px;font-weight:640;font-size:20px;letter-spacing:-.02em}
-        .brand .mk{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--ink),#4a463d);display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700}
-        .nav-mid{display:flex;gap:30px}
-        .nav-mid a{font-size:15px;color:var(--ink-2);transition:color .15s}.nav-mid a:hover{color:var(--ink)}
-        .nav-end{display:flex;align-items:center;gap:14px}
-        .nav-end .login{font-size:15px;color:var(--ink-2);font-weight:500}.nav-end .login:hover{color:var(--ink)}
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=fraunces:480,560,480i|archivo:400,500,600,700|ibm-plex-mono:400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 
-        .hero{text-align:center;padding:clamp(56px,9vw,96px) 0 0}
-        .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink-2);background:var(--tint);border:1px solid var(--border);border-radius:100px;padding:6px 14px}
-        .pill .d{width:6px;height:6px;border-radius:50%;background:var(--green)}
-        h1{margin:24px auto 0;max-width:14.5ch;font-size:clamp(38px,6.2vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:600}
-        h1 .hl{background:linear-gradient(180deg,transparent 62%,#cfe0ff 62%);padding:0 .06em}
-        .sub{margin:24px auto 0;max-width:60ch;font-size:clamp(16px,1.7vw,19px);color:var(--ink-2);line-height:1.6}
-        .hero-cta{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-        .hero-note{margin-top:16px;font-size:13.5px;color:var(--ink-3)}
-        .hero-shot{margin-top:clamp(40px,6vw,64px);position:relative}
-        .hero-shot::after{content:"";position:absolute;inset:auto 0 -1px 0;height:160px;background:linear-gradient(180deg,transparent,var(--bg));pointer-events:none}
-        .glow{position:absolute;left:50%;top:-6%;transform:translateX(-50%);width:80%;height:70%;background:radial-gradient(50% 50% at 50% 50%,rgba(59,130,246,.16),transparent 70%);filter:blur(20px);z-index:0}
-
-        .browser{position:relative;z-index:1;background:var(--bg);border:1px solid var(--border-2);border-radius:var(--r);box-shadow:var(--shadow-lg);overflow:hidden}
-        .browser-bar{display:flex;align-items:center;gap:14px;padding:11px 14px;border-bottom:1px solid var(--border);background:var(--bg-warm)}
-        .dots{display:flex;gap:7px}.dots i{width:11px;height:11px;border-radius:50%;display:block}
-        .dots i:nth-child(1){background:#F0A8A0}.dots i:nth-child(2){background:#F2D08A}.dots i:nth-child(3){background:#A6D9A6}
-        .urlbar{flex:1;max-width:340px;margin:0 auto;font-family:var(--mono);font-size:12px;color:var(--ink-3);background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:6px 12px;text-align:center}
-
-        .app{display:grid;grid-template-columns:208px 1fr;min-height:430px;background:var(--bg);text-align:left}
-        .app-side{border-right:1px solid var(--border);padding:14px 12px;background:var(--bg-warm);display:flex;flex-direction:column;gap:3px}
-        .app-brand{display:flex;align-items:center;gap:8px;padding:6px 8px 14px;font-weight:640;font-size:15px;letter-spacing:-.01em}
-        .app-brand .mk{width:20px;height:20px;border-radius:6px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700}
-        .nav-i{display:flex;align-items:center;gap:10px;padding:7px 9px;border-radius:7px;font-size:13.5px;color:var(--ink-2)}
-        .nav-i .icon{width:16px;height:16px;opacity:.8}
-        .nav-i.active{background:#fff;color:var(--ink);font-weight:560;box-shadow:var(--shadow-sm)}
-        .nav-i.active .icon{color:var(--blue);opacity:1}
-        .nav-grp{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:14px 9px 5px;font-weight:600}
-        .app-main{padding:22px 24px;overflow:hidden}
-        .app-h{font-size:18px;font-weight:620;letter-spacing:-.01em;margin-bottom:16px}
-        .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-        .kpi{border:1px solid var(--border);border-radius:11px;padding:13px 14px;background:var(--bg)}
-        .kpi .l{font-size:11.5px;color:var(--ink-3);display:flex;align-items:center;gap:6px}.kpi .l .icon{width:13px;height:13px}
-        .kpi .n{margin-top:7px;font-size:24px;font-weight:640;letter-spacing:-.02em}.kpi .n.blue{color:var(--blue)}
-        .panel{margin-top:14px;border:1px solid var(--border);border-radius:11px;padding:15px 16px}
-        .panel .pt{font-size:13px;font-weight:600;margin-bottom:12px}
-        .bar-row{display:grid;grid-template-columns:74px 1fr 30px;align-items:center;gap:10px;margin:9px 0;font-size:12px;color:var(--ink-2)}
-        .bar{height:8px;border-radius:5px;background:var(--tint-blue);overflow:hidden}.bar>i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--blue-soft),var(--blue))}
-
-        .kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-        .kcol{background:var(--bg-warm);border:1px solid var(--border);border-radius:11px;padding:10px}
-        .kcol .ct{font-size:11.5px;font-weight:600;color:var(--ink-2);display:flex;justify-content:space-between;margin-bottom:9px}.kcol .ct .cnt{color:var(--ink-3);font-weight:500}
-        .kcard{background:#fff;border:1px solid var(--border);border-radius:9px;padding:10px;margin-bottom:8px;box-shadow:var(--shadow-sm)}
-        .kcard .kn{font-size:12.5px;font-weight:560;line-height:1.3}
-        .kcard .km{margin-top:8px;display:flex;align-items:center;justify-content:space-between}
-        .kchip{font-size:10px;font-weight:600;padding:3px 7px;border-radius:5px}
-        .kchip.b{background:var(--tint-blue);color:var(--blue)}.kchip.a{background:#FEF3E2;color:var(--amber)}.kchip.g{background:#E8F4EA;color:var(--green)}
-        .av{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#cbd5e1,#94a3b8);color:#fff;font-size:9px;font-weight:600;display:grid;place-items:center}
-
-        .app.themed .app-side{background:#0f2417;border-right-color:#1c3a27}
-        .app.themed .app-brand{color:#fff}.app.themed .app-brand .mk{background:#fff;color:#0f2417}
-        .app.themed .nav-i{color:#b9c9bd}
-        .app.themed .nav-i.active{background:rgba(255,255,255,.12);color:#fff;box-shadow:none}.app.themed .nav-i.active .icon{color:#fff}
-        .app.themed .nav-grp{color:#7f9586}
-        .swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-        .sw{border:1px solid var(--border);border-radius:10px;padding:11px;display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:520}
-        .sw .c{width:26px;height:26px;border-radius:7px;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
-        .sw.sel{border-color:var(--green);box-shadow:0 0 0 2px rgba(21,128,61,.16)}
-
-        .strip{padding:30px 0 6px}
-        .strip p{text-align:center;font-size:13px;letter-spacing:.04em;color:var(--ink-3);text-transform:uppercase;font-weight:560}
-        .chips{margin:16px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-        .chips span{font-size:13.5px;color:var(--ink-2);border:1px solid var(--border);border-radius:100px;padding:7px 15px}
-
-        .feature{padding:clamp(48px,7vw,88px) 0}
-        .feat-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
-        .feature.flip .feat-copy{order:2}
-        .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.02em}
-        .feature h2{margin:14px 0 14px;font-size:clamp(26px,3.4vw,38px);line-height:1.12;letter-spacing:-.028em;font-weight:600;max-width:15ch}
-        .feature p.lead{font-size:17px;color:var(--ink-2);line-height:1.62;max-width:46ch}
-        .ticklist{margin-top:20px;display:flex;flex-direction:column;gap:11px}
-        .ticklist li{list-style:none;display:flex;gap:11px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
-        .ticklist .ck{width:20px;height:20px;flex:none;border-radius:50%;background:#E8F0FE;color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:1px}
-        .feat-visual.tint{background:var(--tint);border:1px solid var(--border);border-radius:20px;padding:clamp(20px,3vw,34px)}
-        .feat-visual.tint.blue{background:var(--tint-blue);border-color:#DCE6FB}
-        .feat-visual.tint.green{background:#EAF2EC;border-color:#D6E6DA}
-
-        .grid-sec{padding:clamp(40px,6vw,72px) 0}
-        .sec-title{text-align:center;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.028em;font-weight:600;line-height:1.1;max-width:18ch;margin:0 auto}
-        .sec-sub{text-align:center;color:var(--ink-2);font-size:17px;margin:14px auto 0;max-width:54ch}
-        .mini-grid{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-        .mini{border:1px solid var(--border);border-radius:14px;padding:22px;background:var(--bg);transition:box-shadow .25s,transform .25s}
-        .mini:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-        .mini .ic{width:38px;height:38px;border-radius:10px;background:var(--tint);display:grid;place-items:center;margin-bottom:14px}.mini .ic .icon{width:19px;height:19px;stroke:var(--ink)}
-        .mini h3{font-size:16.5px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
-        .mini p{font-size:14.5px;color:var(--ink-2);line-height:1.55}
-
-        .steps-sec{padding:clamp(44px,6vw,80px) 0}
-        .steps{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-        .stp .sn{font-family:var(--mono);font-size:13px;color:var(--blue);font-weight:500}
-        .stp .ln{height:1px;background:var(--border);margin:12px 0 16px}
-        .stp h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:7px}
-        .stp p{font-size:15px;color:var(--ink-2);line-height:1.58}
-        .url-pill{font-family:var(--mono);font-size:13px;background:var(--tint);border:1px solid var(--border);border-radius:6px;padding:2px 7px}
-
-        .cta-band{margin:clamp(40px,6vw,72px) 0}
-        .cta-card{background:linear-gradient(160deg,#26241F,#3a362d);color:#fff;border-radius:24px;padding:clamp(40px,6vw,72px) clamp(28px,5vw,64px);text-align:center;position:relative;overflow:hidden}
-        .cta-card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 80% 0%,rgba(59,130,246,.22),transparent 60%)}
-        .cta-card>*{position:relative}
-        .cta-card h2{font-size:clamp(28px,4.4vw,48px);letter-spacing:-.03em;font-weight:600;line-height:1.08;max-width:16ch;margin:0 auto}
-        .cta-card p{margin:16px auto 0;max-width:48ch;color:#D7D3CA;font-size:17px}
-        .cta-card .acts{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-        .btn-light{background:#fff;color:var(--ink)}.btn-light:hover{background:#f1efe9;transform:translateY(-1px)}
-        .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}.btn-line:hover{border-color:#fff;transform:translateY(-1px)}
-
-        footer.foot{border-top:1px solid var(--border);padding:34px 0}
-        .foot-in{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-        .foot .brand{font-size:17px}
-        .foot .cp{font-size:13px;color:var(--ink-3)}
-        .foot-r{display:flex;gap:22px;align-items:center}
-        .foot-r a{font-size:13.5px;color:var(--ink-3)}.foot-r a:hover{color:var(--ink)}
-
-        .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-        .reveal.in{opacity:1;transform:none}
-        [data-d="1"]{transition-delay:.06s}[data-d="2"]{transition-delay:.12s}[data-d="3"]{transition-delay:.18s}
-
-        @media (max-width:880px){.nav-mid{display:none}.feat-in{grid-template-columns:1fr;gap:28px}.feature.flip .feat-copy{order:0}.kpis{grid-template-columns:repeat(2,1fr)}.kanban{grid-template-columns:repeat(2,1fr)}.mini-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
-        @media (max-width:560px){.nav-end .login{display:none}.app{grid-template-columns:1fr}.app-side{display:none}.kpis{grid-template-columns:1fr 1fr}.kanban{grid-template-columns:1fr 1fr}.mini-grid{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(2,1fr)}}
-        @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.btn:hover,.mini:hover{transform:none}}
-    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "arqeno",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "pt-BR",
+        "description": "Plataforma de gestão de projetos para escritórios de arquitetura: etapas, aprovações de clientes, briefing com IA, orçamentos e agenda.",
+        "url": "https://arqeno.com.br",
+        "offers": [
+            { "@type": "Offer", "name": "Essencial", "price": "97.00", "priceCurrency": "BRL", "description": "Plano mensal para escritórios começando — até 3 usuários." },
+            { "@type": "Offer", "name": "Estúdio", "price": "197.00", "priceCurrency": "BRL", "description": "Plano mensal para estúdios em crescimento — até 10 usuários, projetos ilimitados." },
+            { "@type": "Offer", "name": "Escritório", "price": "397.00", "priceCurrency": "BRL", "description": "Plano mensal para escritórios estabelecidos — usuários ilimitados." }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Preciso de cartão de crédito para testar?", "acceptedAnswer": { "@type": "Answer", "text": "Não. O trial de 14 dias é completo e sem cartão. Você só paga se decidir continuar." } },
+            { "@type": "Question", "name": "Meus clientes precisam pagar para aprovar etapas?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Clientes do escritório acessam gratuitamente os projetos deles para acompanhar e aprovar etapas — sem custo por cliente." } },
+            { "@type": "Question", "name": "O que acontece com meus dados se eu cancelar?", "acceptedAnswer": { "@type": "Answer", "text": "Nada é apagado. O acesso é suspenso, e você pode exportar todos os seus dados a qualquer momento. Você nunca fica refém." } },
+            { "@type": "Question", "name": "O preço é por usuário?", "acceptedAnswer": { "@type": "Answer", "text": "Não — é por escritório. Diferente de ferramentas como Monday ou Wrike, sua mensalidade não cresce a cada pessoa que entra na equipe." } }
+        ]
+    }
+    </script>
 </head>
 <body>
-    {{-- SVG sprite --}}
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-        <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></symbol>
-        <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13h4l2 3h6l2-3h4"/><path d="M5 5h14l2 8v6H3v-6z"/></symbol>
-        <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
-        <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M18 20a6 6 0 0 0-3-5.2"/></symbol>
-        <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M3 20h18"/></symbol>
-        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
-        <symbol id="i-swatch" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="16" rx="1.5"/><path d="M11 14l5-5 4 4-9 9"/></symbol>
-        <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
-        <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
-        <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
-        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
-        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
-    </svg>
 
-    <header class="nav" id="nav">
-        <div class="container nav-in">
-            <a href="/" class="brand"><span class="mk">a</span> arqeno</a>
-            <nav class="nav-mid">
-                <a href="#produto">Produto</a>
-                <a href="#whitelabel">Sua marca</a>
-                <a href="#fluxo">Como funciona</a>
-                <a href="#publico">Para quem</a>
-            </nav>
-            <div class="nav-end">
-                <a href="https://admin.arqeno.com.br/admin" class="login">Entrar</a>
-                <a href="mailto:contato@arqeno.com.br?subject=Quero%20conhecer%20a%20arqeno" class="btn btn-dark">Quero conhecer <span class="ar">→</span></a>
-            </div>
-        </div>
-    </header>
+<header class="topbar">
+    <div class="topbar-in">
+        <a class="logo" href="/">arq<b>eno</b></a>
+        <nav class="nav">
+            <a href="#recursos">Recursos</a>
+            <a href="#comparativo">Comparativo</a>
+            <a href="#planos">Planos</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-login" href="#" id="nav-login" rel="nofollow">Entrar</a>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="#planos" data-open-signup data-plan="estudio">Testar grátis</a>
+    </div>
+</header>
 
-    <section class="hero">
-        <div class="container">
-            <span class="pill reveal"><span class="d"></span> Gestão de projetos para escritórios criativos</span>
-            <h1 class="reveal" data-d="1">Cada projeto sob controle, <span class="hl">do briefing à obra</span>.</h1>
-            <p class="sub reveal" data-d="2">Pipeline de fases, aprovações do cliente e toda a comunicação num só lugar — com a leveza de uma ferramenta tipo Notion. Uma alternativa mais acessível a Wrike, Monday e Jira, feita para escritórios de arquitetura, engenharia e marcenaria.</p>
-            <div class="hero-cta reveal" data-d="3">
-                <a href="mailto:contato@arqeno.com.br?subject=Quero%20conhecer%20a%20arqeno" class="btn btn-dark">Começar agora <span class="ar">→</span></a>
-                <a href="#produto" class="btn btn-soft">Ver o produto</a>
+<!-- HERO -->
+<section class="hero">
+    <div class="wrap">
+        <div class="hero-head">
+            <p class="annot left">Gestão de projetos · Arquitetura &amp; interiores</p>
+            <h1>Seu escritório inteiro,<br>do briefing à obra, <em>em um só lugar.</em></h1>
+            <p class="hero-sub">
+                Chega de Trello + WhatsApp + planilhas. O arqeno organiza projetos por etapas,
+                coloca o <strong>seu cliente para aprovar dentro da plataforma</strong> e transforma a
+                anotação da reunião em briefing estruturado com IA.
+            </p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary btn-lg" data-open-signup data-plan="estudio">Começar trial de 14 dias</button>
+                <a class="btn btn-ghost btn-lg" href="#recursos">Ver como funciona</a>
             </div>
-            <p class="hero-note reveal" data-d="3">Sem cartão de crédito · Seu escritório no ar em minutos</p>
+            <p class="hero-note"><b>✓</b> 14 dias grátis &nbsp;·&nbsp; <b>✓</b> sem cartão de crédito &nbsp;·&nbsp; <b>✓</b> seus dados são exportáveis sempre</p>
         </div>
 
-        <div class="container hero-shot reveal" data-d="2">
-            <div class="glow"></div>
-            <div class="browser">
-                <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">studionl.arqeno.cloud/app</div></div>
-                <div class="app">
-                    <aside class="app-side">
-                        <div class="app-brand"><span class="mk">N</span> Studio NL</div>
-                        <div class="nav-i active"><svg class="icon"><use href="#i-home"/></svg> Painel de Controle</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-inbox"/></svg> Caixa de entrada</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-folder"/></svg> Projetos</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-users"/></svg> Clientes</div>
-                        <div class="nav-grp">Gestão</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-chart"/></svg> Relacionamento</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-calendar"/></svg> Agenda de Projetos</div>
-                        <div class="nav-grp">Conta</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-swatch"/></svg> Aparência</div>
-                    </aside>
-                    <main class="app-main">
-                        <div class="app-h">Painel de Controle</div>
-                        <div class="kpis">
-                            <div class="kpi"><div class="l"><svg class="icon"><use href="#i-folder"/></svg> Projetos ativos</div><div class="n">8</div></div>
-                            <div class="kpi"><div class="l"><svg class="icon"><use href="#i-chart"/></svg> Progresso médio</div><div class="n blue">64%</div></div>
-                            <div class="kpi"><div class="l"><svg class="icon"><use href="#i-check"/></svg> Concluídos</div><div class="n">23</div></div>
-                            <div class="kpi"><div class="l"><svg class="icon"><use href="#i-doc"/></svg> Briefings</div><div class="n">2</div></div>
-                        </div>
-                        <div class="panel">
-                            <div class="pt">Projetos por fase</div>
-                            <div class="bar-row"><span>Briefing</span><span class="bar"><i style="width:30%"></i></span><span>2</span></div>
-                            <div class="bar-row"><span>Medição</span><span class="bar"><i style="width:55%"></i></span><span>3</span></div>
-                            <div class="bar-row"><span>Layout</span><span class="bar"><i style="width:80%"></i></span><span>5</span></div>
-                            <div class="bar-row"><span>Projeto 3D</span><span class="bar"><i style="width:45%"></i></span><span>3</span></div>
-                            <div class="bar-row"><span>Detalhamento</span><span class="bar"><i style="width:60%"></i></span><span>4</span></div>
-                            <div class="bar-row"><span>Obra</span><span class="bar"><i style="width:25%"></i></span><span>1</span></div>
-                        </div>
-                    </main>
-                </div>
+        <figure class="browser reveal">
+            <div class="browser-bar">
+                <i></i><i></i><i></i>
+                <span class="browser-url">seuescritorio.arqeno.cloud/app</span>
+            </div>
+            <img src="/assets/screenshots/02-visao-geral.png" alt="Painel do arqeno mostrando a visão geral de um projeto de arquitetura com pipeline de fases, status e pendências" width="1903" height="931" loading="eager">
+        </figure>
+    </div>
+</section>
+
+<div class="proof">
+    <div class="proof-in">
+        <span>Em produção com <b>escritórios reais</b> desde 2026</span>
+        <span>Dados <b>isolados por escritório</b> (banco próprio)</span>
+        <span>Servidores no Brasil · <b>LGPD</b></span>
+        <span>Suporte em <b>português</b>, por gente de verdade</span>
+    </div>
+</div>
+
+<!-- DORES -->
+<section class="pains">
+    <div class="wrap">
+        <p class="annot left">01 · O problema</p>
+        <h2 class="sec-title">Seu projeto está espalhado em <em>cinco ferramentas</em> que não conversam.</h2>
+        <div class="pain-grid">
+            <div class="pain reveal">
+                <span class="n">A —</span>
+                <h3>Aprovação por WhatsApp se perde</h3>
+                <p>O cliente aprovou o layout… em um áudio, três semanas atrás, num grupo com 200 mensagens. <strong>Quando vira retrabalho, ninguém acha o registro.</strong></p>
+            </div>
+            <div class="pain reveal">
+                <span class="n">B —</span>
+                <h3>Planilha não cobra prazo</h3>
+                <p>Etapas, responsáveis e datas em planilhas que dependem de alguém lembrar de atualizar. <strong>O atraso aparece quando já virou problema.</strong></p>
+            </div>
+            <div class="pain reveal">
+                <span class="n">C —</span>
+                <h3>Ferramenta genérica não fala arquitetura</h3>
+                <p>Trello e Monday não sabem o que é briefing, prancha executiva ou validação de etapa pelo cliente. <strong>Você gasta horas adaptando — e a equipe não adota.</strong></p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="strip">
-        <div class="container">
-            <p class="reveal">Pensada para quem entrega projetos com etapas e aprovação de cliente</p>
-            <div class="chips reveal" data-d="1">
-                <span>Arquitetura</span><span>Interiores</span><span>Engenharia</span><span>Marcenaria</span><span>Paisagismo</span><span>Reformas &amp; obras</span>
-            </div>
-        </div>
-    </section>
+<!-- FEATURES -->
+<section id="recursos">
+    <div class="wrap">
+        <p class="annot left">02 · A solução</p>
+        <h2 class="sec-title">Feito para o fluxo real de um escritório: <em>medição → briefing → layout → 3D → obra.</em></h2>
 
-    <section class="feature" id="produto">
-        <div class="container feat-in">
-            <div class="feat-copy reveal">
-                <span class="kicker">— Pipeline</span>
-                <h2>O fluxo do projeto, visível de relance</h2>
-                <p class="lead">Arraste cada projeto pelas fases — Briefing, Layout, 3D, Detalhamento, Obra. Prazos, responsáveis e progresso ficam sempre à vista, sem planilha paralela.</p>
-                <ul class="ticklist">
-                    <li><span class="ck">✓</span> Fases ordenadas e personalizáveis por escritório</li>
-                    <li><span class="ck">✓</span> Progresso e prazos calculados automaticamente</li>
-                    <li><span class="ck">✓</span> Cada responsável sabe o que fazer em seguida</li>
+        <div class="feature">
+            <div class="feature-copy reveal">
+                <h3>O cliente aprova cada etapa dentro da plataforma</h3>
+                <p>Quando o layout ou o 3D está pronto, o cliente recebe um e-mail, entra com o login dele e <strong>aprova ou pede ajustes por escrito</strong> — com data, autor e motivo registrados para sempre.</p>
+                <ul>
+                    <li><strong>Registro permanente</strong> de cada aprovação e recusa</li>
+                    <li>Comentários por etapa com menções <strong>@pessoa</strong></li>
+                    <li>O cliente vê só os projetos dele — nada da gestão interna</li>
                 </ul>
             </div>
-            <div class="feat-visual tint blue reveal" data-d="1">
-                <div class="browser">
-                    <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">studionl.arqeno.cloud/projetos</div></div>
-                    <div class="app"><aside class="app-side">
-                        <div class="app-brand"><span class="mk">N</span> Studio NL</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-home"/></svg> Painel</div>
-                        <div class="nav-i active"><svg class="icon"><use href="#i-folder"/></svg> Projetos</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-inbox"/></svg> Caixa de entrada</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-users"/></svg> Clientes</div>
-                    </aside><main class="app-main">
-                        <div class="app-h">Projetos</div>
-                        <div class="kanban">
-                            <div class="kcol"><div class="ct">Briefing <span class="cnt">2</span></div>
-                                <div class="kcard"><div class="kn">Casa de Campo · Itu</div><div class="km"><span class="kchip a">Em briefing</span><span class="av">RB</span></div></div>
-                                <div class="kcard"><div class="kn">Loja Conceito · Centro</div><div class="km"><span class="kchip a">Em briefing</span><span class="av">AN</span></div></div>
-                            </div>
-                            <div class="kcol"><div class="ct">Layout <span class="cnt">1</span></div>
-                                <div class="kcard"><div class="kn">Residência Alto da Boa Vista</div><div class="km"><span class="kchip b">Aprovação</span><span class="av">MV</span></div></div>
-                            </div>
-                            <div class="kcol"><div class="ct">Projeto 3D <span class="cnt">1</span></div>
-                                <div class="kcard"><div class="kn">Apto. Jardins · Reforma</div><div class="km"><span class="kchip b">Em curso</span><span class="av">BC</span></div></div>
-                            </div>
-                            <div class="kcol"><div class="ct">Obra <span class="cnt">1</span></div>
-                                <div class="kcard"><div class="kn">Escritório Faria Lima</div><div class="km"><span class="kchip g">Em obra</span><span class="av">DN</span></div></div>
-                            </div>
-                        </div>
-                    </main></div>
-                </div>
+            <div class="feature-shot reveal">
+                <div class="shot"><img src="/assets/screenshots/04-aprovacao-3d.png" alt="Tela de aprovação do Projeto 3D no arqeno com status aguardando aprovação do cliente e conversa entre arquiteto e cliente" loading="lazy"></div>
+                <p class="shot-cap">Aprovação de etapa + conversa com o cliente</p>
             </div>
         </div>
-    </section>
 
-    <section class="feature flip">
-        <div class="container feat-in">
-            <div class="feat-copy reveal">
-                <span class="kicker">— Aprovação do cliente</span>
-                <h2>O cliente aprova cada fase, sem ruído</h2>
-                <p class="lead">Marque as fases que exigem validação. O cliente recebe o aviso, revisa e aprova — ou recusa com um comentário registrado. Nada de aprovação perdida no WhatsApp.</p>
-                <ul class="ticklist">
-                    <li><span class="ck">✓</span> Aprovou: o projeto avança automaticamente</li>
-                    <li><span class="ck">✓</span> Recusou: volta com o motivo documentado</li>
-                    <li><span class="ck">✓</span> Histórico completo de quem aprovou e quando</li>
+        <div class="feature flip">
+            <div class="feature-copy reveal">
+                <h3>Cole a anotação da reunião. A IA monta o briefing.</h3>
+                <p>Texto corrido da primeira conversa com o cliente vira <strong>perfil da família, preferências, requisitos técnicos e ambientes</strong> — organizados e editáveis. O que levava uma tarde, leva um minuto.</p>
+                <ul>
+                    <li>Gostos e aversões viram tags consultáveis pela equipe</li>
+                    <li>Requisitos técnicos viram checklist com responsável</li>
+                    <li>Ambientes alimentam as etapas seguintes do projeto</li>
                 </ul>
             </div>
-            <div class="feat-visual tint reveal" data-d="1">
-                <div class="browser">
-                    <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">studionl.arqeno.cloud/projetos/residencia</div></div>
-                    <div class="app"><aside class="app-side">
-                        <div class="app-brand"><span class="mk">N</span> Studio NL</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-home"/></svg> Painel</div>
-                        <div class="nav-i active"><svg class="icon"><use href="#i-folder"/></svg> Projetos</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-inbox"/></svg> Caixa de entrada</div>
-                    </aside><main class="app-main">
-                        <div class="app-h">Residência Alto da Boa Vista</div>
-                        <div class="panel" style="margin-top:0">
-                            <div class="pt" style="display:flex;justify-content:space-between;align-items:center">Fase: Layout <span class="kchip a">Aguardando cliente</span></div>
-                            <p style="font-size:13px;color:var(--ink-2);line-height:1.5;margin:4px 0 14px">Plantas e estudo de layout enviados para validação do cliente em 12/06.</p>
-                            <div style="display:flex;gap:10px">
-                                <span class="btn btn-dark" style="font-size:13px;padding:9px 16px">Aprovar fase</span>
-                                <span class="btn btn-soft" style="font-size:13px;padding:9px 16px">Solicitar ajuste</span>
-                            </div>
-                            <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:13px;display:flex;gap:10px;align-items:flex-start">
-                                <span class="av">CL</span>
-                                <div><div style="font-size:12.5px;font-weight:560">Cliente · Carla L.</div><div style="font-size:12.5px;color:var(--ink-2)">"Aprovado! Podem seguir para o 3D." <span style="color:var(--green);font-weight:600">✓ aprovou</span></div></div>
-                            </div>
-                        </div>
-                    </main></div>
-                </div>
+            <div class="feature-shot reveal">
+                <div class="shot"><img src="/assets/screenshots/03-briefing.png" alt="Briefing organizado por IA no arqeno com perfil familiar, preferências de estilo e requisitos técnicos" loading="lazy"></div>
+                <p class="shot-cap">Briefing estruturado pela IA</p>
             </div>
         </div>
-    </section>
 
-    <section class="feature" id="whitelabel">
-        <div class="container feat-in">
-            <div class="feat-copy reveal">
-                <span class="kicker">— Sua marca</span>
-                <h2>O painel que o cliente vê é a sua marca</h2>
-                <p class="lead">Suba o logo do escritório e escolha o tema de cores. A barra lateral, os destaques e o painel inteiro carregam a sua identidade — não a nossa.</p>
-                <ul class="ticklist">
-                    <li><span class="ck">✓</span> Logo próprio no topo da barra lateral</li>
-                    <li><span class="ck">✓</span> Temas de cor para todo o escritório</li>
-                    <li><span class="ck">✓</span> Modo claro e escuro por usuário</li>
+        <div class="feature">
+            <div class="feature-copy reveal">
+                <h3>Pipeline com 7 fases — e datas que se recalculam sozinhas</h3>
+                <p>Da medição aos orçamentos, cada projeto segue um pipeline visual. <strong>Mudou uma data? As fases seguintes se ajustam em cascata.</strong> Todo mundo sabe em que pé o projeto está, sem perguntar.</p>
+                <ul>
+                    <li>Responsável <strong>por etapa</strong>, não só por projeto</li>
+                    <li>Progresso e fase atual visíveis na lista de projetos</li>
+                    <li>Histórico completo de quem fez o quê (auditoria)</li>
                 </ul>
             </div>
-            <div class="feat-visual tint green reveal" data-d="1">
-                <div class="browser">
-                    <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">studionl.arqeno.cloud/app/aparencia</div></div>
-                    <div class="app themed"><aside class="app-side">
-                        <div class="app-brand"><span class="mk">N</span> Studio NL</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-home"/></svg> Painel de Controle</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-folder"/></svg> Projetos</div>
-                        <div class="nav-i"><svg class="icon"><use href="#i-users"/></svg> Clientes</div>
-                        <div class="nav-grp">Conta</div>
-                        <div class="nav-i active"><svg class="icon"><use href="#i-swatch"/></svg> Aparência</div>
-                    </aside><main class="app-main">
-                        <div class="app-h">Aparência · Tema</div>
-                        <div class="swatches">
-                            <div class="sw"><span class="c" style="background:#3b82f6"></span> Midnight</div>
-                            <div class="sw"><span class="c" style="background:#9f1239"></span> Merlot</div>
-                            <div class="sw"><span class="c" style="background:#6d28d9"></span> Imperial</div>
-                            <div class="sw"><span class="c" style="background:#ea580c"></span> Pumpkin</div>
-                            <div class="sw sel"><span class="c" style="background:#15803d"></span> Woodland</div>
-                            <div class="sw"><span class="c" style="background:#404040"></span> Monochrome</div>
-                        </div>
-                    </main></div>
-                </div>
+            <div class="feature-shot reveal">
+                <div class="shot"><img src="/assets/screenshots/01-projetos.png" alt="Lista de projetos do escritório no arqeno com status, fase atual e progresso de cada um" loading="lazy"></div>
+                <p class="shot-cap">Todos os projetos do escritório, num relance</p>
             </div>
         </div>
-    </section>
 
-    <section class="grid-sec">
-        <div class="container">
-            <h2 class="sec-title reveal">Tudo que o escritório precisa, sem o peso de um ERP</h2>
-            <p class="sec-sub reveal" data-d="1">Foco no que importa: tocar projetos e manter o cliente por dentro.</p>
-            <div class="mini-grid">
-                <div class="mini reveal"><div class="ic"><svg class="icon"><use href="#i-chat"/></svg></div><h3>Comunicação no contexto</h3><p>Comentários com @menções e anexos ficam na fase a que pertencem — não perdidos no e-mail.</p></div>
-                <div class="mini reveal" data-d="1"><div class="ic"><svg class="icon"><use href="#i-inbox"/></svg></div><h3>Caixa de entrada</h3><p>Briefings, pendências e aprovações chegam priorizados num só lugar.</p></div>
-                <div class="mini reveal" data-d="2"><div class="ic"><svg class="icon"><use href="#i-calendar"/></svg></div><h3>Agenda de projetos</h3><p>Prazos e marcos do escritório numa visão única, sem surpresa de última hora.</p></div>
-                <div class="mini reveal"><div class="ic"><svg class="icon"><use href="#i-shield"/></svg></div><h3>Dados isolados</h3><p>Cada escritório tem seu espaço, usuários e projetos — separados de ponta a ponta.</p></div>
-                <div class="mini reveal" data-d="1"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div><h3>Equipe &amp; permissões</h3><p>Convide membros e clientes com papéis e acessos definidos por você.</p></div>
-                <div class="mini reveal" data-d="2"><div class="ic"><svg class="icon"><use href="#i-bell"/></svg></div><h3>Notificações em tempo útil</h3><p>Avisos do que realmente importa, sem inundar a equipe de ruído.</p></div>
+        <div class="feature flip">
+            <div class="feature-copy reveal">
+                <h3>Orçamentos, pendências e agenda — sem sair do projeto</h3>
+                <p>Cotações de fornecedores lado a lado por categoria, pendências com prazo e responsável (com alerta antes de vencer) e a agenda da equipe conectada aos projetos.</p>
+                <ul>
+                    <li>Compare cotações e marque a vencedora</li>
+                    <li>Pendências de documento, aprovação e pagamento</li>
+                    <li>Notificações no painel <strong>e por e-mail</strong> nos eventos-chave</li>
+                </ul>
+            </div>
+            <div class="feature-shot reveal">
+                <div class="shot"><img src="/assets/screenshots/05-orcamentos.png" alt="Tela de orçamentos do arqeno com cotações de marcenaria e iluminação comparadas por fornecedor" loading="lazy"></div>
+                <p class="shot-cap">Cotações comparadas por categoria</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="steps-sec" id="fluxo">
-        <div class="container">
-            <h2 class="sec-title reveal">Do zero ao primeiro projeto em minutos</h2>
-            <div class="steps">
-                <div class="stp reveal"><div class="sn">01</div><div class="ln"></div><h3>Seu endereço próprio</h3><p>O escritório acessa por uma URL exclusiva — <span class="url-pill">nome.arqeno.cloud</span> — com seus dados e usuários.</p></div>
-                <div class="stp reveal" data-d="1"><div class="sn">02</div><div class="ln"></div><h3>Monte o projeto</h3><p>Crie o projeto, defina fases e responsáveis e convide o cliente para acompanhar e aprovar.</p></div>
-                <div class="stp reveal" data-d="2"><div class="sn">03</div><div class="ln"></div><h3>Conduza até a entrega</h3><p>Avance fase a fase com aprovações registradas, comentários no contexto e prazos à vista.</p></div>
+<!-- COMPARATIVO -->
+<section class="compare" id="comparativo">
+    <div class="wrap">
+        <p class="annot left">03 · Comparativo</p>
+        <h2 class="sec-title">Ferramenta genérica se <em>adapta</em>. O arqeno já <em>nasce pronto.</em></h2>
+        <p class="sec-sub">Comparação honesta com os caminhos mais comuns de um escritório brasileiro.</p>
+
+        <div class="compare-wrap">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="is-arqeno">arqeno</th>
+                        <th>Monday / Wrike</th>
+                        <th>Trello</th>
+                        <th>Planilhas + WhatsApp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fluxo de arquitetura pronto (briefing → obra)</td>
+                        <td class="is-arqeno yes">✓</td>
+                        <td class="no">configurar do zero</td>
+                        <td class="no">✗</td>
+                        <td class="no">✗</td>
+                    </tr>
+                    <tr>
+                        <td>Cliente aprova etapas com registro</td>
+                        <td class="is-arqeno yes">✓ nativo</td>
+                        <td class="no">gambiarra c/ forms</td>
+                        <td class="no">✗</td>
+                        <td class="no">áudio no grupo</td>
+                    </tr>
+                    <tr>
+                        <td>Briefing organizado por IA</td>
+                        <td class="is-arqeno yes">✓</td>
+                        <td class="no">✗</td>
+                        <td class="no">✗</td>
+                        <td class="no">✗</td>
+                    </tr>
+                    <tr>
+                        <td>Preço</td>
+                        <td class="is-arqeno">por escritório</td>
+                        <td>por usuário (cresce c/ a equipe)</td>
+                        <td>por usuário</td>
+                        <td>"grátis" (caro em retrabalho)</td>
+                    </tr>
+                    <tr>
+                        <td>Clientes acessam sem pagar a mais</td>
+                        <td class="is-arqeno yes">✓ ilimitado</td>
+                        <td class="no">licença p/ convidado</td>
+                        <td class="no">limitado</td>
+                        <td class="yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Em português, preço em reais, LGPD</td>
+                        <td class="is-arqeno yes">✓</td>
+                        <td class="no">parcial (USD)</td>
+                        <td class="no">parcial (USD)</td>
+                        <td class="yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Seus dados isolados e exportáveis</td>
+                        <td class="is-arqeno yes">✓ banco próprio</td>
+                        <td>compartilhado</td>
+                        <td>compartilhado</td>
+                        <td class="no">espalhados</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="compare-foot">* Comparativo baseado nos planos publicados das ferramentas em junho/2026. Monday/Wrike cobram por usuário/mês em dólar.</p>
+    </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos">
+    <div class="wrap">
+        <p class="annot left">04 · Planos</p>
+        <h2 class="sec-title">Preço por <em>escritório</em>. Sua equipe cresce, a mensalidade não.</h2>
+        <p class="sec-sub">Todos os planos começam com <strong>14 dias grátis com todos os recursos</strong> — sem cartão de crédito. Cancele quando quiser; seus dados são sempre exportáveis.</p>
+
+        <div class="plans-grid">
+            <div class="plan reveal">
+                <h3>Essencial</h3>
+                <p class="plan-for">Para quem está começando ou trabalha solo.</p>
+                <div class="plan-price"><span class="cur">R$</span><span class="val">97</span><span class="per">/mês</span></div>
+                <ul>
+                    <li><strong>3 usuários</strong> da equipe</li>
+                    <li><strong>10 projetos</strong> ativos</li>
+                    <li>Clientes ilimitados aprovando etapas</li>
+                    <li>Briefing com IA (20 extrações/mês)</li>
+                    <li>Pipeline, orçamentos, pendências, agendas</li>
+                    <li>Notificações por e-mail</li>
+                </ul>
+                <button class="btn btn-ghost" data-open-signup data-plan="essencial">Começar grátis</button>
+            </div>
+
+            <div class="plan hot reveal">
+                <span class="plan-badge">Mais escolhido</span>
+                <h3>Estúdio</h3>
+                <p class="plan-for">Para estúdios em crescimento com vários projetos rodando.</p>
+                <div class="plan-price"><span class="cur">R$</span><span class="val">197</span><span class="per">/mês</span></div>
+                <ul>
+                    <li><strong>10 usuários</strong> da equipe</li>
+                    <li><strong>Projetos ilimitados</strong></li>
+                    <li>Clientes ilimitados aprovando etapas</li>
+                    <li>Briefing com IA (100 extrações/mês)</li>
+                    <li>Logo e cores do seu escritório no painel</li>
+                    <li>Suporte prioritário</li>
+                </ul>
+                <button class="btn btn-primary" data-open-signup data-plan="estudio">Começar grátis</button>
+            </div>
+
+            <div class="plan reveal">
+                <h3>Escritório</h3>
+                <p class="plan-for">Para escritórios estabelecidos com equipe grande.</p>
+                <div class="plan-price"><span class="cur">R$</span><span class="val">397</span><span class="per">/mês</span></div>
+                <ul>
+                    <li><strong>Usuários ilimitados</strong></li>
+                    <li><strong>Projetos ilimitados</strong></li>
+                    <li>Clientes ilimitados aprovando etapas</li>
+                    <li>Briefing com IA sem cota (uso justo)</li>
+                    <li>Onboarding assistido da equipe</li>
+                    <li>Suporte prioritário</li>
+                </ul>
+                <button class="btn btn-ghost" data-open-signup data-plan="escritorio">Começar grátis</button>
             </div>
         </div>
-    </section>
+        <p class="plans-note"><b>Garantia simples:</b> não gostou, não paga. O trial não pede cartão — e cancelando depois, seus dados continuam exportáveis.</p>
+    </div>
+</section>
 
-    <section class="cta-band" id="publico">
-        <div class="container">
-            <div class="cta-card reveal">
-                <h2>Pronto para ver seus projetos em ordem?</h2>
-                <p>Fale com a gente e coloque o seu escritório no ar — com a sua marca, do seu jeito.</p>
-                <div class="acts">
-                    <a href="mailto:contato@arqeno.com.br?subject=Quero%20conhecer%20a%20arqeno" class="btn btn-light">Falar com a arqeno <span class="ar">→</span></a>
-                    <a href="https://admin.arqeno.com.br/admin" class="btn btn-line">Acesso administrativo</a>
-                </div>
-            </div>
+<!-- FAQ -->
+<section id="faq">
+    <div class="wrap">
+        <p class="annot left">05 · Perguntas frequentes</p>
+        <h2 class="sec-title">O que todo mundo pergunta <em>antes de assinar.</em></h2>
+        <div class="faq-list">
+            <details>
+                <summary>Preciso de cartão de crédito para testar?</summary>
+                <p>Não. O trial de 14 dias é completo — todos os recursos — e não pede cartão. No fim do período, você ativa a assinatura via Mercado Pago (PIX, boleto ou cartão). Se não ativar, o acesso fica suspenso, mas <strong>nenhum dado é apagado</strong>.</p>
+            </details>
+            <details>
+                <summary>Meus clientes pagam para acessar?</summary>
+                <p>Não. Clientes do seu escritório entram de graça, veem apenas os projetos deles e aprovam (ou recusam, com motivo) as etapas que você enviar. Sem limite de clientes em nenhum plano.</p>
+            </details>
+            <details>
+                <summary>O que acontece com meus dados se eu cancelar?</summary>
+                <p>Seus dados ficam preservados e exportáveis. Cada escritório tem um banco de dados próprio e isolado — você nunca fica refém. É um princípio nosso: saída sempre disponível.</p>
+            </details>
+            <details>
+                <summary>Quanto tempo leva para começar?</summary>
+                <p>Minutos. Você cria a conta, confirma o e-mail e o seu ambiente (ex.: <code>seuescritorio.arqeno.cloud</code>) já está no ar. Crie o primeiro projeto, cole o briefing de uma reunião e convide a equipe.</p>
+            </details>
+            <details>
+                <summary>A IA do briefing usa meus dados para treinar modelos?</summary>
+                <p>Não. Os textos enviados para extração são processados pela Anthropic (Claude) sem retenção para treinamento, e nada do seu banco é compartilhado com terceiros fora da operação do serviço. Servidores no Brasil, em conformidade com a LGPD.</p>
+            </details>
+            <details>
+                <summary>Funciona para engenharia, design de interiores ou marcenaria?</summary>
+                <p>Sim. O fluxo (briefing → layout → 3D → executivo → obra → orçamentos) atende escritórios de arquitetura, interiores, engenharia e empresas com fluxo projeto-aprovação. Os papéis e permissões são personalizáveis por escritório.</p>
+            </details>
+            <details>
+                <summary>Posso trocar de plano depois?</summary>
+                <p>Pode, a qualquer momento — basta falar com a gente em contato@arqeno.com.br que ajustamos sem burocracia. Upgrade vale na hora; downgrade vale no ciclo seguinte.</p>
+            </details>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="foot">
-        <div class="container foot-in">
-            <div style="display:flex;align-items:center;gap:14px">
-                <span class="brand"><span class="mk" style="width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;display:inline-grid;place-items:center;font-size:13px;font-weight:700">a</span> arqeno</span>
-                <span class="cp">&copy; <span id="y"></span> · Todos os direitos reservados</span>
-            </div>
-            <div class="foot-r">
-                <a href="#produto">Produto</a>
-                <a href="privacidade.html">Privacidade</a>
+<!-- CTA FINAL -->
+<section class="cta-final">
+    <div class="wrap">
+        <h2>Na próxima reunião, mostre o projeto <em>organizado.</em></h2>
+        <p>Crie seu ambiente agora e cole o briefing da última reunião. Em 14 dias você decide — sem cartão, sem fidelidade.</p>
+        <button class="btn btn-lg btn-paper" data-open-signup data-plan="estudio">Criar meu ambiente grátis</button>
+        <p class="hero-note"><b>✓</b> pronto em minutos &nbsp;·&nbsp; <b>✓</b> 14 dias com tudo liberado</p>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <div class="foot-in">
+            <a class="logo" href="/">arq<b>eno</b></a>
+            <div class="foot-links">
+                <a href="#recursos">Recursos</a>
+                <a href="#planos">Planos</a>
+                <a href="#faq">FAQ</a>
+                <a href="/privacidade.html">Privacidade</a>
                 <a href="mailto:contato@arqeno.com.br">contato@arqeno.com.br</a>
             </div>
         </div>
-    </footer>
+        <p class="foot-fine">© 2026 arqeno · Gestão de projetos para escritórios de arquitetura · Feito no Brasil</p>
+    </div>
+</footer>
 
-    <script>
-        document.getElementById('y').textContent = new Date().getFullYear();
-        (function(){
-            var nav=document.getElementById('nav');
-            var f=function(){nav.classList.toggle('scrolled',window.scrollY>8)};
-            addEventListener('scroll',f,{passive:true});f();
-            var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var els=[].slice.call(document.querySelectorAll('.reveal'));
-            if(reduce||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
-            var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-            els.forEach(function(e){io.observe(e)});
-        })();
-    </script>
+<!-- MODAL SIGNUP -->
+<div class="modal-overlay" id="signup-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+        <div id="signup-form-wrap">
+            <div class="modal-head">
+                <h3 id="signup-title">Criar meu ambiente</h3>
+                <button class="modal-close" data-close-signup aria-label="Fechar">×</button>
+            </div>
+            <p class="modal-sub">14 dias grátis com todos os recursos. Sem cartão.</p>
+
+            <form id="signup-form" novalidate>
+                <div class="form-error" id="signup-error"></div>
+
+                <div class="field">
+                    <label for="f-office">Nome do escritório</label>
+                    <input id="f-office" name="office_name" type="text" required maxlength="120" placeholder="Ex.: Atelier Vista Arquitetura" autocomplete="organization">
+                </div>
+                <div class="field">
+                    <label for="f-name">Seu nome</label>
+                    <input id="f-name" name="contact_name" type="text" required maxlength="120" placeholder="Ex.: Ana Souza" autocomplete="name">
+                </div>
+                <div class="field">
+                    <label for="f-email">E-mail profissional</label>
+                    <input id="f-email" name="email" type="email" required maxlength="255" placeholder="voce@seuescritorio.com.br" autocomplete="email">
+                </div>
+                <div class="field">
+                    <label for="f-password">Senha (mín. 8 caracteres)</label>
+                    <input id="f-password" name="password" type="password" required minlength="8" maxlength="72" autocomplete="new-password">
+                </div>
+                <div class="field">
+                    <label for="f-subdomain">Endereço do seu ambiente</label>
+                    <div class="subdomain-row">
+                        <input id="f-subdomain" name="subdomain" type="text" required minlength="3" maxlength="40"
+                               placeholder="seuescritorio" autocomplete="off" autocapitalize="off" spellcheck="false"
+                               pattern="[a-z0-9][a-z0-9\-]{1,38}[a-z0-9]">
+                        <span class="subdomain-suffix">.arqeno.cloud</span>
+                    </div>
+                    <p class="field-hint" id="subdomain-hint">Letras minúsculas, números e hífen.</p>
+                </div>
+                <div class="field">
+                    <label for="f-plan">Plano (após o trial)</label>
+                    <select id="f-plan" name="plan">
+                        <option value="essencial">Essencial — R$ 97/mês</option>
+                        <option value="estudio" selected>Estúdio — R$ 197/mês</option>
+                        <option value="escritorio">Escritório — R$ 397/mês</option>
+                    </select>
+                    <p class="field-hint">Você pode trocar depois. O trial é igual para todos.</p>
+                </div>
+
+                <!-- honeypot anti-bot -->
+                <div class="hp" aria-hidden="true">
+                    <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" id="signup-submit">Criar ambiente grátis →</button>
+                <p class="modal-fine">Ao continuar você concorda com a <a href="/privacidade.html">Política de Privacidade</a>.</p>
+            </form>
+        </div>
+
+        <div class="modal-success" id="signup-success">
+            <div class="check">✉️</div>
+            <h4>Confirme seu e-mail</h4>
+            <p>Enviamos um link de confirmação para<br><span class="mail" id="success-email"></span></p>
+            <p>Clique no link para criarmos seu ambiente — leva menos de um minuto. Confira também a caixa de spam.</p>
+        </div>
+    </div>
+</div>
+
+<script src="/script.js" defer></script>
 </body>
 </html>
